@@ -1,9 +1,18 @@
 'use strict';
 
-var userDialog = document.querySelector('.setup');
-userDialog.classList.remove('hidden');
+var setupOpen = document.querySelector('.setup-open');
+var setup = document.querySelector('.setup');
+var setupClose = document.querySelector('.setup-close');
 
-document.querySelector('.setup-similar').classList.remove('hidden');
+setupOpen.addEventListener('click', function() {
+    setup.classList.remove('hidden');
+    document.querySelector('.setup-similar').classList.remove('hidden');
+});
+
+setupClose.addEventListener('click', function() {
+    setup.classList.add('hidden');
+    document.querySelector('.setup-similar').classList.add('hidden');
+});
 
 var similarListElement = document.querySelector('.setup-similar-list');
 var similarWizardTemplate = document.querySelector('#similar-wizard-template')
