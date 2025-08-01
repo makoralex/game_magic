@@ -4,14 +4,37 @@ var setupOpen = document.querySelector('.setup-open');
 var setup = document.querySelector('.setup');
 var setupClose = document.querySelector('.setup-close');
 
-setupOpen.addEventListener('click', function() {
+var onPopupEscPress = function(evt) {
+    if (evt.keyCode === 27) {
+        closePopup();
+    }
+};
+
+var openPopup = function() {
     setup.classList.remove('hidden');
     document.querySelector('.setup-similar').classList.remove('hidden');
-});
+    document.addEventListener('keydown', onPopupEscPress);
+};
 
-setupClose.addEventListener('click', function() {
+var closePopup = function() {
     setup.classList.add('hidden');
     document.querySelector('.setup-similar').classList.add('hidden');
+    document.removeEventListener('keydown', onPopupEscPress);
+};
+
+
+//появление менюшки нажатем на аватарку
+setupOpen.addEventListener('click', function() {
+    openPopup();
+    });
+    
+//закрытие менюшки нажатием на крестик
+setupClose.addEventListener('click', function() {
+    closePopup();
+});
+
+setupClose.addEventListener('keydown', function(evt) {
+    if (evt.keyCode === 13) {closePopup();}
 });
 
 var similarListElement = document.querySelector('.setup-similar-list');
